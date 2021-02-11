@@ -31,8 +31,9 @@ var config = {
 };
 
 var player;
-var stars;
-var stars2;
+var cherry;
+var strawberry;
+var apple;
 var bombs;
 var platforms;
 var cursors;
@@ -44,9 +45,11 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('sky', 'assets/lab.png');
-    this.load.image('ground', 'assets/platform.png');
-    this.load.image('star', 'assets/sprites32.png');
+    this.load.image('sky', 'assets/scifi_bg.png');
+    this.load.image('ground', 'assets/new_platform3.jpg');
+    this.load.image('cherry1', 'assets/cherry.png');
+    this.load.image('strawberry1', 'assets/strawberry.png')
+    this.load.image('apple1', 'assets/apple.png')
     this.load.image('bomb', 'assets/bomb.png');
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
@@ -54,7 +57,7 @@ function preload ()
 function create ()
 {
     //  A simple background for our game
-    this.add.image(400, 300, 'sky');
+    this.add.image(530, 400, 'sky');
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = this.physics.add.staticGroup();
@@ -104,27 +107,40 @@ function create ()
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
 
-    //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
-    stars = this.physics.add.group({
-        key: 'star',
-        repeat: 11,
-        setXY: { x: 12, y: 0, stepX: 70 }
+    //  create cherries
+    cherry = this.physics.add.group({
+        key: 'cherry1',
+        repeat: 12,
+        setXY: { x: 20, y: 0, stepX: 70 }
     });
 
-    stars.children.iterate(function (child) {
+    cherry.children.iterate(function (child) {
 
         //  Give each star a slightly different bounce
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
 
     });
-
-    stars2 = this.physics.add.group({
-        key: 'star',
-        repeat: 11,
-        setXY: { x: 12, y:350, stepX: 70 }
+    //  create strawberries
+    strawberry = this.physics.add.group({
+        key: 'strawberry1',
+        repeat: 12,
+        setXY: { x: 20, y:350, stepX: 70 }
     });
 
-    stars2.children.iterate(function (child) {
+    strawberry.children.iterate(function (child) {
+
+        //  Give each star a slightly different bounce
+        child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+
+    });
+    //  create apples
+    apple = this.physics.add.group({
+        key: 'apple1',
+        repeat: 9,
+        setXY: { x: 200, y: 600, stepX: 70 }
+    });
+
+    apple.children.iterate(function (child) {
 
         //  Give each star a slightly different bounce
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
@@ -138,13 +154,15 @@ function create ()
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, platforms);
-    this.physics.add.collider(stars, platforms);
-    this.physics.add.collider(stars2, platforms);
+    this.physics.add.collider(cherry, platforms);
+    this.physics.add.collider(strawberry, platforms);
+    this.physics.add.collider(apple, platforms);
     this.physics.add.collider(bombs, platforms);
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-    this.physics.add.overlap(player, stars, collectStar, null, this);
-    this.physics.add.overlap(player, stars2, collectStar, null, this);
+    this.physics.add.overlap(player, cherry, collectCherry, null, this);
+    this.physics.add.overlap(player, strawberry, collectStrawberry, null, this);
+    this.physics.add.overlap(player, apple, collectApple, null, this);
     this.physics.add.collider(player, bombs, hitBomb, null, this);
 }
 
@@ -180,24 +198,24 @@ function update ()
     }
 }
 
-function collectStar (player, star)
+function collectCherry (players, cherries)
 {
-    star.disableBody(true, true);
+    cherries.disableBody(true, true);
 
     //  Add and update the score
     score += 5;
     scoreText.setText('Score: ' + score);
 
-    if (stars.countActive(true) === 0)
+    if (cherry.countActive(true) === 0)
     {
         //  A new batch of stars to collect
-        stars.children.iterate(function (child) {
+        cherry.children.iterate(function (child) {
 
             child.enableBody(true, child.x, 0, true, true);
 
         });
 
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+        var x = (players.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
         var bomb = bombs.create(x, 16, 'bomb');
         bomb.setBounce(1);
@@ -206,13 +224,65 @@ function collectStar (player, star)
 
     }
 }
-function hitBomb (player, bomb)
+function collectStrawberry (players, strawberries)
+{
+    strawberries.disableBody(true, true);
+
+    //  Add and update the score
+    score += 3;
+    scoreText.setText('Score: ' + score);
+
+    if (strawberry.countActive(true) === 0)
+    {
+        //  A new batch of stars to collect
+        strawberry.children.iterate(function (child) {
+
+            child.enableBody(true, child.x, 350, true, true);
+
+        });
+
+        var x = (players.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+        var bomb = bombs.create(x, 16, 'bomb');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+
+    }
+}
+function collectApple (players, apples)
+{
+    apples.disableBody(true, true);
+
+    //  Add and update the score
+    score += 1;
+    scoreText.setText('Score: ' + score);
+
+    if (apple.countActive(true) === 0)
+    {
+        //  A new batch of stars to collect
+        apple.children.iterate(function (child) {
+
+            child.enableBody(true, child.x, 600, true, true);
+
+        });
+
+        var x = (players.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+        var bomb = bombs.create(x, 16, 'bomb');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+
+    }
+}
+function hitBomb (players, bomb)
 {
     this.physics.pause();
 
-    player.setTint(0xff0000);
+    players.setTint(0x3EA7EC);
 
-    player.anims.play('turn');
+    players.anims.play('turn');
 
     gameOver = true;
 }
