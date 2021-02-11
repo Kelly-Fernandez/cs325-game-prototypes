@@ -48,8 +48,8 @@ function preload ()
     this.load.image('sky', 'assets/scifi_bg.png');
     this.load.image('ground', 'assets/new_platform3.jpg');
     this.load.image('cherry1', 'assets/cherry.png');
-    this.load.image('strawberry1', 'assets/strawberry.png')
-    this.load.image('apple1', 'assets/apple.png')
+    this.load.image('strawberry1', 'assets/strawberry.png');
+    this.load.image('apple1', 'assets/apple.png');
     this.load.image('bomb', 'assets/bomb.png');
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
