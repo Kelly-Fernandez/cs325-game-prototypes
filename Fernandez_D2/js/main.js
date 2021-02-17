@@ -11,6 +11,7 @@ import "./phaser.js";
 
 // The simplest class example: https://phaser.io/examples/v3/view/scenes/scene-from-es6-class
 
+
 var config = {
     type: Phaser.AUTO,
     parent: 'game',
@@ -31,11 +32,8 @@ var config = {
 };
 
 let player;
-var cherry;
-var strawberry;
-var apple;
-var bombs;
-var platforms;
+var water;
+let text;
 var cursors;
 var score = 0;
 var gameOver = false;
@@ -46,6 +44,7 @@ var game = new Phaser.Game(config);
 function preload ()
 {
     this.load.image("tiles", "assets/maze_tiles.png");
+    this.load.image("water1","assets/water.png");
     this.load.tilemapTiledJSON("map", "assets/mazetrial.json");
     this.load.spritesheet('dude', 'assets/little_man.png', { frameWidth: 31.5, frameHeight: 48 });
 }
@@ -58,14 +57,27 @@ function create ()
 
     const tileset = map.addTilesetImage("maze_tiles","tiles");
 
+    var rng = Math.floor((Math.random() * 3) + 1);
+    let worldLayer;
+
     const groundLayer = map.createStaticLayer("ground", tileset, 0, 0);
     const oasis = map.createStaticLayer("oasis", tileset, 0, 0);
-    const worldLayer = map.createStaticLayer("world", tileset, 0, 0);
 
+    if (rng == 1){
+        worldLayer = map.createStaticLayer("world1", tileset, 0, 0);
+    }
+    else if (rng == 2) {
+        worldLayer = map.createStaticLayer("world2", tileset, 0, 0);
+    }
+    else {
+        worldLayer = map.createStaticLayer("world3", tileset, 0, 0);
+    }
     worldLayer.setCollisionByProperty({ collides: true });
 
     // The player and its settings
     player = this.physics.add.sprite(300, 900, 'dude');
+
+    this.reset = this.input.keyboard.addKey('SPACE');
 
     //  Player physics properties. Give the little guy a slight bounce.
     //player.setBounce(0.2);
@@ -92,10 +104,27 @@ function create ()
         repeat: -1
     });
 
+    this.anims.create({
+        key: 'up',
+        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'down',
+        frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
 
-    bombs = this.physics.add.group();
+    water = this.physics.add.group({
+        key: 'water1',
+        setXY: { x: 480, y: 480 }
+    })
 
     //  The score
     scoreText = this.add.text(16, 1, 'score: 0', { fontSize: '32px', fill: '#000' });
@@ -103,15 +132,25 @@ function create ()
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, worldLayer);
 
+
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-    this.physics.add.overlap(player, cherry, collectCherry, null, this);
-    this.physics.add.overlap(player, strawberry, collectStrawberry, null, this);
-    this.physics.add.overlap(player, apple, collectApple, null, this);
-    this.physics.add.collider(player, bombs, hitBomb, null, this);
+    this.physics.add.overlap(player, water, collectWater, null, this);
 }
 
 function update ()
 {
+    if (gameOver)
+    {
+        let style = { font: "30px Tahoma", fill: "#3391CF", outline: "5px",align: "center" };
+        text = this.add.text( this.cameras.main.centerX, this.cameras.main.centerY, "YOU FOUND THE OASIS\nPress SPACE to play again", style );
+        text.setOrigin( 0.5, 0.0 );
+    }
+
+    if(this.reset.isDown){
+        this.scene.restart();
+        gameOver = false;
+    }
+    
     player.body.setVelocity(0);
 
     //horizontal movement
@@ -132,10 +171,14 @@ function update ()
     else if (cursors.up.isDown)
     {
         player.setVelocityY(-260);
+
+        player.anims.play('down', true);
     }
     else if (cursors.down.isDown)
     {
         player.setVelocityY(260);
+
+        player.anims.play('up', true);
     }
     else
     {
@@ -145,94 +188,22 @@ function update ()
     }
 }
 
-function collectCherry (players, cherries)
+function collectWater (players, bottle)
 {
-    cherries.disableBody(true, true);
+    bottle.disableBody(true, true);
 
     //  Add and update the score
     score += 5;
     scoreText.setText('Score: ' + score);
 
-    if (cherry.countActive(true) === 0)
+    if (water.countActive(true) === 0)
     {
-        //  A new batch of stars to collect
-        cherry.children.iterate(function (child) {
-
-            child.enableBody(true, child.x, 0, true, true);
-
-        });
-
-        var x = (players.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-
+        this.physics.pause();
+        players.anims.play('turn');
+        gameOver = true;
     }
 }
-function collectStrawberry (players, strawberries)
-{
-    strawberries.disableBody(true, true);
 
-    //  Add and update the score
-    score += 3;
-    scoreText.setText('Score: ' + score);
-
-    if (strawberry.countActive(true) === 0)
-    {
-        //  A new batch of stars to collect
-        strawberry.children.iterate(function (child) {
-
-            child.enableBody(true, child.x, 350, true, true);
-
-        });
-
-        var x = (players.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-
-    }
-}
-function collectApple (players, apples)
-{
-    apples.disableBody(true, true);
-
-    //  Add and update the score
-    score += 1;
-    scoreText.setText('Score: ' + score);
-
-    if (apple.countActive(true) === 0)
-    {
-        //  A new batch of stars to collect
-        apple.children.iterate(function (child) {
-
-            child.enableBody(true, child.x, 600, true, true);
-
-        });
-
-        var x = (players.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-
-    }
-}
-function hitBomb (players, bomb)
-{
-    this.physics.pause();
-
-    players.setTint(0x3EA7EC);
-
-    players.anims.play('turn');
-
-    gameOver = true;
-}
 
     
 
