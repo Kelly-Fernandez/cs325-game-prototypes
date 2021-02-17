@@ -35,7 +35,7 @@ let player;
 var water;
 let text;
 var cursors;
-var score = 0;
+var level = 1;
 var gameOver = false;
 var scoreText;
 
@@ -57,16 +57,15 @@ function create ()
 
     const tileset = map.addTilesetImage("maze_tiles","tiles");
 
-    var rng = Math.floor((Math.random() * 3) + 1);
     let worldLayer;
 
     const groundLayer = map.createStaticLayer("ground", tileset, 0, 0);
     const oasis = map.createStaticLayer("oasis", tileset, 0, 0);
 
-    if (rng == 1){
+    if (level == 1){
         worldLayer = map.createStaticLayer("world1", tileset, 0, 0);
     }
-    else if (rng == 2) {
+    else if (level == 2) {
         worldLayer = map.createStaticLayer("world2", tileset, 0, 0);
     }
     else {
@@ -127,7 +126,7 @@ function create ()
     })
 
     //  The score
-    scoreText = this.add.text(16, 1, 'score: 0', { fontSize: '32px', fill: '#000' });
+    scoreText = this.add.text(16, 1, 'level: ' + level, { fontSize: '32px', fill: '#000' });
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, worldLayer);
@@ -141,14 +140,24 @@ function update ()
 {
     if (gameOver)
     {
-        let style = { font: "30px Tahoma", fill: "#3391CF", outline: "5px",align: "center" };
-        text = this.add.text( this.cameras.main.centerX, this.cameras.main.centerY, "YOU FOUND THE OASIS\nPress SPACE to play again", style );
-        text.setOrigin( 0.5, 0.0 );
+        if (level != 4) {
+            let style = { font: "30px Tahoma", fill: "#3391CF", outline: "5px",align: "center" };
+            text = this.add.text( this.cameras.main.centerX, this.cameras.main.centerY, "YOU FOUND THE OASIS\nPress SPACE to play next level", style );
+            text.setOrigin( 0.5, 0.0 );
+        }
+        else {
+            let style = { font: "30px Tahoma", fill: "#3391CF", outline: "5px",align: "center" };
+            text = this.add.text( this.cameras.main.centerX, this.cameras.main.centerY, "YOU WON\nPress SPACE to restart game", style );
+            text.setOrigin( 0.5, 0.0 ); 
+        }
     }
 
     if(this.reset.isDown){
         this.scene.restart();
         gameOver = false;
+        if (level == 4) {
+            level = 1;
+        }
     }
     
     player.body.setVelocity(0);
@@ -193,8 +202,8 @@ function collectWater (players, bottle)
     bottle.disableBody(true, true);
 
     //  Add and update the score
-    score += 5;
-    scoreText.setText('Score: ' + score);
+    level += 1;
+    scoreText.setText('level: ' + level);
 
     if (water.countActive(true) === 0)
     {
