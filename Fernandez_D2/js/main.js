@@ -38,6 +38,9 @@ var cursors;
 var level = 1;
 var gameOver = false;
 var scoreText;
+var music;
+var hydration = 100;
+var hydraText;
 
 var game = new Phaser.Game(config);
 
@@ -47,6 +50,7 @@ function preload ()
     this.load.image("water1","assets/water.png");
     this.load.tilemapTiledJSON("map", "assets/mazetrial.json");
     this.load.spritesheet('dude', 'assets/little_man.png', { frameWidth: 31.5, frameHeight: 48 });
+    this.load.audio('bgm', 'assets/moonlight-beach.mp3');
 }
 
 function create ()
@@ -56,6 +60,10 @@ function create ()
     const map = this.make.tilemap({key: "map"});
 
     const tileset = map.addTilesetImage("maze_tiles","tiles");
+
+    this.music = this.sound.add('bgm', {volume: 0.10}); 
+    this.music.play();
+
 
     let worldLayer;
 
@@ -79,7 +87,6 @@ function create ()
     this.reset = this.input.keyboard.addKey('SPACE');
 
     //  Player physics properties. Give the little guy a slight bounce.
-    //player.setBounce(0.2);
     player.setCollideWorldBounds(true);
 
     //  Our player animations, turning, walking left and walking right.
@@ -127,6 +134,7 @@ function create ()
 
     //  The score
     scoreText = this.add.text(16, 1, 'level: ' + level, { fontSize: '32px', fill: '#000' });
+    hydraText = this.add.text(300, 1, 'hydration: ' + hydration, { fontSize: '32px', fill: '#000' });
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, worldLayer);
@@ -154,6 +162,8 @@ function update ()
 
     if(this.reset.isDown){
         this.scene.restart();
+        this.music.stop();
+        hydration = 100;
         gameOver = false;
         if (level == 4) {
             level = 1;
@@ -166,12 +176,17 @@ function update ()
     if (cursors.left.isDown)
     {
         player.setVelocityX(-260);
+        
+        hydration -= .05;
+        hydraText.setText('hydration: ' + Math.round(hydration));
 
         player.anims.play('left', true);
     }
     else if (cursors.right.isDown)
     {
         player.setVelocityX(260);
+        hydration -= .05;
+        hydraText.setText('hydration: ' + Math.round(hydration));
 
         player.anims.play('right', true);
     }
@@ -180,19 +195,24 @@ function update ()
     else if (cursors.up.isDown)
     {
         player.setVelocityY(-260);
+        hydration -= .05;
+        hydraText.setText('hydration: ' + Math.round(hydration));
 
         player.anims.play('down', true);
     }
     else if (cursors.down.isDown)
     {
         player.setVelocityY(260);
+        hydration -= .05;
+        hydraText.setText('hydration: ' + Math.round(hydration));
 
         player.anims.play('up', true);
     }
     else
     {
         player.setVelocityX(0);
-
+        hydration -= .005;
+        hydraText.setText('hydration: ' + Math.round(hydration));
         player.anims.play('turn');
     }
 }
@@ -204,6 +224,7 @@ function collectWater (players, bottle)
     //  Add and update the score
     level += 1;
     scoreText.setText('level: ' + level);
+    hydraText.setText('hydration: ' + hydration);
 
     if (water.countActive(true) === 0)
     {
