@@ -69,13 +69,13 @@ function create () {
 
     //load world layer according to level
     if (level == 1) {
-        worldLayer = map.createStaticLayer("world1", tileset, 0, 0);
+        worldLayer = map.createStaticLayer("level1", tileset, 0, 0);
     }
     else if (level == 2) {
-        worldLayer = map.createStaticLayer("world2", tileset, 0, 0);
+        worldLayer = map.createStaticLayer("level2", tileset, 0, 0);
     }
     else {
-        worldLayer = map.createStaticLayer("world3", tileset, 0, 0);
+        worldLayer = map.createStaticLayer("level3", tileset, 0, 0);
     }
 
     //set collision on map
@@ -195,7 +195,7 @@ function update ()
     {
         player.setVelocityX(-260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= 0.05;
+            hydration -= 0.1;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
@@ -205,7 +205,7 @@ function update ()
     {
         player.setVelocityX(260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= 0.05;
+            hydration -= 0.1;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
@@ -217,7 +217,7 @@ function update ()
     {
         player.setVelocityY(-260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= 0.05;
+            hydration -= 0.1;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
@@ -227,7 +227,7 @@ function update ()
     {
         player.setVelocityY(260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= 0.05;
+            hydration -= 0.1;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
@@ -237,7 +237,7 @@ function update ()
     {
         player.setVelocityX(0);
         if (levelUp == false && gameOver == false) { 
-            hydration -= 0.005;
+            hydration -= 0.05;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
         player.anims.play('turn');
