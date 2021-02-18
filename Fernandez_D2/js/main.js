@@ -49,7 +49,7 @@ function preload () {
     this.load.image("water1","assets/water.png");
     this.load.tilemapTiledJSON("map", "assets/mazetrial.json");
     this.load.spritesheet('dude', 'assets/little_man.png', { frameWidth: 31.5, frameHeight: 48 });
-    this.load.audio('bgm', 'assets/moonlight-beach.mp3');
+    this.load.audio('bgm', 'assets/dune_style.ogg');
 }
 
 function create () {
@@ -96,6 +96,7 @@ function create () {
         frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
         frameRate: 10,
         repeat: -1
+        
     });
 
     this.anims.create({
@@ -151,9 +152,10 @@ function update ()
     //end game and print if hydration reaches 0
     if(hydration < 0) {
         gameOver = true;
-        let style = { font: "30px Tahoma", fill: "#3391CF", outline: "5px",align: "center" };
-        text = this.add.text( this.cameras.main.centerX, this.cameras.main.centerY, "YOU DIED OF THRIST\nPress SPACE to restart game", style );
-        text.setOrigin( 0.5, 0.0 ); 
+
+        let style = { font: "30px Droid Sans", fill: "#3391CF", outline: "5px",align: "center" };
+        text = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, "YOU DIED OF THRIST!\nPress SPACE to restart game", style );
+        text.setOrigin( 0.5, 2.4 ); 
         this.physics.pause();
     }
 
@@ -161,14 +163,14 @@ function update ()
     if (levelUp)
     {
         if (level != 4) {
-            let style = { font: "30px Tahoma", fill: "#3391CF", outline: "5px",align: "center" };
-            text = this.add.text( this.cameras.main.centerX, this.cameras.main.centerY, "YOU FOUND THE OASIS\nPress SPACE to play next level", style );
-            text.setOrigin( 0.5, 0.0 );
+            let style = { font: "30px Droid Sans", fill: "#3391CF", outline: "5px",align: "center" };
+            text = this.add.text( this.cameras.main.centerX, this.cameras.main.centerY, "YOU FOUND THE OASIS!\nPress SPACE to play next level", style );
+            text.setOrigin( 0.5, 2.4 );
         }
         else {
-            let style = { font: "30px Tahoma", fill: "#3391CF", outline: "5px",align: "center" };
-            text = this.add.text( this.cameras.main.centerX, this.cameras.main.centerY, "YOU WON\nPress SPACE to restart game", style );
-            text.setOrigin( 0.5, 0.0 ); 
+            let style = { font: "30px Droid Sans", fill: "#3391CF", outline: "5px",align: "center" };
+            text = this.add.text( this.cameras.main.centerX, this.cameras.main.centerY, "YOU WON!\nPress SPACE to restart game", style );
+            text.setOrigin( 0.5, 2.4 ); 
         }
     }
 
@@ -193,7 +195,7 @@ function update ()
     {
         player.setVelocityX(-260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= .05;
+            hydration -= 0.05;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
@@ -203,7 +205,7 @@ function update ()
     {
         player.setVelocityX(260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= .05;
+            hydration -= 0.05;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
@@ -215,7 +217,7 @@ function update ()
     {
         player.setVelocityY(-260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= .05;
+            hydration -= 0.05;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
@@ -225,7 +227,7 @@ function update ()
     {
         player.setVelocityY(260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= .05;
+            hydration -= 0.05;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
@@ -235,7 +237,7 @@ function update ()
     {
         player.setVelocityX(0);
         if (levelUp == false && gameOver == false) { 
-            hydration -= .005;
+            hydration -= 0.0005;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
         player.anims.play('turn');
