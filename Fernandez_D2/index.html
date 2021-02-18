@@ -23,69 +23,68 @@ body
 
 <ul>
 <li><strong>Originality:</strong>
-The Chemist has to collect his vials while new bombs are added after vial rows are collected. Each vial collected gives you different scores - green: 1, blue: 3, red: 5. 
+Help the hero find the oasis before he dehydrates!
 </li>
 
 <li><strong>Technical Merit:</strong>
-New bombs are added after each row completion. Each vial is worth different scores. Added custom sprite, vials, platforms, background.
+I used custom tilesets and tile maps to make various map levels for the game. Added a press button to restart as well as background music. Player loses hydration with cursor input and while idle but at a slower pace.
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
-I learned how to implement available code and analyzed in order to create my own game. I have no prior experience with javascript or phaser so I took this time to learn the mechanics. The hardest part was creating my own spritesheet to make my own character.    
+I learned how to use the Tiled software to create tilesets and maps with different layers. I also leared how to incorporate a reset button and audio.  
 </li>
 
 <li><strong>Prototype Assets:</strong>
 <ul>
-<li>Phaser first game: <a href="http://phaser.io/examples/v3/category/games/firstgameo">source code</a></li>
-<li>Background: <a href="https://opengameart.org/content/backgrounds-for-2d-platformers">concept art</a></li>
+<li>Tiled Tutorial: <a href="https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6">source code</a></li>
+<li>Music: <a href="https://opengameart.org/content/egyptian-styledune-style">concept art</a></li>
 <li>Sprite: <a href="https://kenney.nl/assets/toon-characters-1">character art</a></li>
-<li>Vials: <a href="https://opengameart.org/content/potion-bottles-2">items art</a></li>
+<li>Water bottle: <a href="https://opengameart.org/content/bottle-of-water">items art</a></li>
 </ul>
 </li>
 
 <li><strong>Prototype Closest Other Game:</strong>
-Phaser first game
+I used the tile map tutorial to incorpate tilesets and maps.
 </li>
 
 <li><strong>High Concept:</strong>
-Help the chemist collect his vials while avoiding bombs!
+Help the hero escape the desert and find the oasis!
 </li>
 
 <li><strong>Theme:</strong>
-Chemist Theme
+Oasis Theme
 </li>
 
 <li><strong>Mandated Variety:</strong>
-The game uses direct arrow key inputs to move the character. The bombs move in a deterministic pattern as they bounce of platforms and the boundry. This game is in the style of 2d platform collector.
+The game uses direct arrow key inputs to move the character. The map levels are pre-determined so there isn't an element of randomness in this game. The rate at which you lose hydration is also pre-determined. This game is in the style of 2d platform puzzle.
 </li>
 
 <li><strong>Prototype Goal:</strong>
-I wanted to learn how phaser works and how to code for it. I also wanted to learn how to create my own spritesheets to create characters.
+I wanted to incorpate background music because my last game felt empty without it. I also wanted a restart button because I didn't like refreshing my page. I wanted to learn how to use Tiled for maps so it will be easier for future games.
 </li>
 
 <li><strong>Player Experience Goals:</strong>
-I want the player to have fun while they avoid bombs and collect vials and try to get a high score.
+I want the player to feel challenged by the puzzle and excited as they try to finish the puzzle in time.
 </li>
 
 <li><strong>Gameplay:</strong>
-The player starts on the ground of the level and can move up, down, right, left using arrow keys. The player can use the platform to climb onto higher platforms where vials are worth more. Once every vial of any one kind is collected, a new batch of vials is released along with a new bomb. Each vial is worth varying amount of points. Green on the ground row is worth 1, blue on the middle row is worth 3, and red on the upper row is worth 5 points. I wanted to add a leaderboard but I think that is best left for when I have more experience with phaser.    
+The player begins at the bottom of the map on level 1 with 100 hydration. The player will start losing hydration at a right of 0.05/per cursor input and at 0.005 for being idle. The player must reach the oasis in the middle of the map before they run out of hydration. Upon completion of the level they move onto the next level. If they die of dehydration they must return to level 1.
 </li>
 
 <li><strong>Strategies:</strong>
-The player will decide which rows they wanna clear first for optimum scores to bombs ratios. The player will also have to get used to the movements of the bombs to avoid them.
+The player may wish to solve the puzzle in their head before they start moving and lose dehydration. They do lose some hydration while idle so they have to hurry.
 </li>
 
 <li><strong>Story/Setting/Premise:</strong>
-Set with an industrial background the chemist hero must collect his precious vials while evil corporate bombs with the aim of storm-troopers try to get him. How far will he get on his quest to collect all of his vials?
-Will the bombs ever develop better AI than cyberpunk 2077?
+The explorer have become lost in this seemingly endless desert. He is slowly dehydrating and must reach the oasis before he dies of dehydration.
 </li>
 
 <li><strong>Target Audience:</strong>
-My audience is 2d platform enthusiasts who grew up playing these types of games and for lovers of chemistry and haters of corporate oppression.
+My audience is 2d puzzle lovers who love problem-solving with some relaxing background music.
 </li>
 
 <li><strong>Play Time:</strong>
-Depending on the players skill they can last anywhere from 10 seconds to 1+ minutes
+Each level should take 15 seconds to a minute.
 </li>
 
 </ul>
