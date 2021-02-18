@@ -195,7 +195,7 @@ function update ()
     {
         player.setVelocityX(-260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= 0.1;
+            hydration -= 0.05;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
@@ -205,7 +205,7 @@ function update ()
     {
         player.setVelocityX(260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= 0.1;
+            hydration -= 0.05;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
@@ -217,7 +217,7 @@ function update ()
     {
         player.setVelocityY(-260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= 0.1;
+            hydration -= 0.05;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
@@ -227,7 +227,7 @@ function update ()
     {
         player.setVelocityY(260);
         if (levelUp == false && gameOver == false) { 
-            hydration -= 0.1;
+            hydration -= 0.02;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
