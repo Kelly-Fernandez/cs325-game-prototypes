@@ -36,16 +36,15 @@ var water;
 let text;
 var cursors;
 var level = 1;
+var levelUp = false;
 var gameOver = false;
-var scoreText;
-var music;
+var levelText;
 var hydration = 100;
 var hydraText;
 
 var game = new Phaser.Game(config);
 
-function preload ()
-{
+function preload () {
     this.load.image("tiles", "assets/maze_tiles.png");
     this.load.image("water1","assets/water.png");
     this.load.tilemapTiledJSON("map", "assets/mazetrial.json");
@@ -53,24 +52,23 @@ function preload ()
     this.load.audio('bgm', 'assets/moonlight-beach.mp3');
 }
 
-function create ()
-{
-    //  A simple background for our game
+function create () {
 
+    //load map and tileset
     const map = this.make.tilemap({key: "map"});
-
     const tileset = map.addTilesetImage("maze_tiles","tiles");
 
+    //play bgm
     this.music = this.sound.add('bgm', {volume: 0.10}); 
     this.music.play();
 
-
+    //load map layers
     let worldLayer;
+    this.groundLayer = map.createStaticLayer("ground", tileset, 0, 0);
+    this.oasis = map.createStaticLayer("oasis", tileset, 0, 0);
 
-    const groundLayer = map.createStaticLayer("ground", tileset, 0, 0);
-    const oasis = map.createStaticLayer("oasis", tileset, 0, 0);
-
-    if (level == 1){
+    //load world layer according to level
+    if (level == 1) {
         worldLayer = map.createStaticLayer("world1", tileset, 0, 0);
     }
     else if (level == 2) {
@@ -79,17 +77,20 @@ function create ()
     else {
         worldLayer = map.createStaticLayer("world3", tileset, 0, 0);
     }
+
+    //set collision on map
     worldLayer.setCollisionByProperty({ collides: true });
 
-    // The player and its settings
+    //add the player
     player = this.physics.add.sprite(300, 900, 'dude');
 
+    //reset button
     this.reset = this.input.keyboard.addKey('SPACE');
 
-    //  Player physics properties. Give the little guy a slight bounce.
+    //player physics properties
     player.setCollideWorldBounds(true);
 
-    //  Our player animations, turning, walking left and walking right.
+    //player animations
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
@@ -124,29 +125,40 @@ function create ()
         repeat: -1
     });
 
-    //  Input Events
+    //cursor input Events
     cursors = this.input.keyboard.createCursorKeys();
-
+    
+    //add waterbottle
     water = this.physics.add.group({
         key: 'water1',
         setXY: { x: 480, y: 480 }
     })
 
-    //  The score
-    scoreText = this.add.text(16, 1, 'level: ' + level, { fontSize: '32px', fill: '#000' });
-    hydraText = this.add.text(300, 1, 'hydration: ' + hydration, { fontSize: '32px', fill: '#000' });
+    //print level and hydration stats
+    levelText = this.add.text(32, 1, 'level: ' + level, { fontSize: '32px', fill: '#000' });
+    hydraText = this.add.text(668, 1, 'hydration: ' + hydration, { fontSize: '32px', fill: '#000' });
 
-    //  Collide the player and the stars with the platforms
+    //collide the player with map walls
     this.physics.add.collider(player, worldLayer);
 
 
-    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
+    //checks to see if the player overlaps with the water bottle
     this.physics.add.overlap(player, water, collectWater, null, this);
 }
 
 function update ()
 {
-    if (gameOver)
+    //end game and print if hydration reaches 0
+    if(hydration < 0) {
+        gameOver = true;
+        let style = { font: "30px Tahoma", fill: "#3391CF", outline: "5px",align: "center" };
+        text = this.add.text( this.cameras.main.centerX, this.cameras.main.centerY, "YOU DIED OF THRIST\nPress SPACE to restart game", style );
+        text.setOrigin( 0.5, 0.0 ); 
+        this.physics.pause();
+    }
+
+    //level up is true if water bottle is collected
+    if (levelUp)
     {
         if (level != 4) {
             let style = { font: "30px Tahoma", fill: "#3391CF", outline: "5px",align: "center" };
@@ -164,10 +176,14 @@ function update ()
         this.scene.restart();
         this.music.stop();
         hydration = 100;
-        gameOver = false;
+        levelUp = false;
         if (level == 4) {
             level = 1;
         }
+        if (gameOver == true) {
+            level = 1;
+        }
+        gameOver = false;
     }
     
     player.body.setVelocity(0);
@@ -176,8 +192,9 @@ function update ()
     if (cursors.left.isDown)
     {
         player.setVelocityX(-260);
-        
-        hydration -= .05;
+        if (levelUp == false && gameOver == false) { 
+            hydration -= .05;
+        }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
         player.anims.play('left', true);
@@ -185,7 +202,9 @@ function update ()
     else if (cursors.right.isDown)
     {
         player.setVelocityX(260);
-        hydration -= .05;
+        if (levelUp == false && gameOver == false) { 
+            hydration -= .05;
+        }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
         player.anims.play('right', true);
@@ -195,7 +214,9 @@ function update ()
     else if (cursors.up.isDown)
     {
         player.setVelocityY(-260);
-        hydration -= .05;
+        if (levelUp == false && gameOver == false) { 
+            hydration -= .05;
+        }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
         player.anims.play('down', true);
@@ -203,7 +224,9 @@ function update ()
     else if (cursors.down.isDown)
     {
         player.setVelocityY(260);
-        hydration -= .05;
+        if (levelUp == false && gameOver == false) { 
+            hydration -= .05;
+        }
         hydraText.setText('hydration: ' + Math.round(hydration));
 
         player.anims.play('up', true);
@@ -211,7 +234,9 @@ function update ()
     else
     {
         player.setVelocityX(0);
-        hydration -= .005;
+        if (levelUp == false && gameOver == false) { 
+            hydration -= .005;
+        }
         hydraText.setText('hydration: ' + Math.round(hydration));
         player.anims.play('turn');
     }
@@ -221,16 +246,16 @@ function collectWater (players, bottle)
 {
     bottle.disableBody(true, true);
 
-    //  Add and update the score
+    //  Add and update the level and restart hydration counter
     level += 1;
-    scoreText.setText('level: ' + level);
+    levelText.setText('level: ' + level);
     hydraText.setText('hydration: ' + hydration);
 
     if (water.countActive(true) === 0)
     {
         this.physics.pause();
         players.anims.play('turn');
-        gameOver = true;
+        levelUp = true;
     }
 }
 
