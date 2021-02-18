@@ -237,7 +237,7 @@ function update ()
     {
         player.setVelocityX(0);
         if (levelUp == false && gameOver == false) { 
-            hydration -= 0.0005;
+            hydration -= 0.005;
         }
         hydraText.setText('hydration: ' + Math.round(hydration));
         player.anims.play('turn');
