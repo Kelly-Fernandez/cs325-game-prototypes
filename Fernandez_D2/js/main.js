@@ -59,7 +59,7 @@ function create () {
     const tileset = map.addTilesetImage("maze_tiles","tiles");
 
     //play bgm
-    this.music = this.sound.add('bgm', {volume: 0.10}); 
+    this.music = this.sound.add('bgm', {volume: 0.04}); 
     this.music.play();
 
     //load map layers
