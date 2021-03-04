@@ -27,24 +27,27 @@ The Chemist has to collect his vials while new bombs are added after vial rows a
 </li>
 
 <li><strong>Technical Merit:</strong>
-New bombs are added after each row completion. Each vial is worth different scores. Added custom sprite, vials, platforms, background.
+New bombs are added after each row completion. The bomb is faster or slower depending on which row was completed. Top row outputs the fastest bomb and bottom row a slower bomb. Each vial is worth different scores. Once all vials are collected you advance to the next level. I used tiled to create 3 different custom world levels. I also added a restart button, music, new background, new physics.
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
-I learned how to implement available code and analyzed in order to create my own game. I have no prior experience with javascript or phaser so I took this time to learn the mechanics. The hardest part was creating my own spritesheet to make my own character.    
+I used the knowledge I gained in my second game regarding tiled to used tiled to create various worlds for levels. I also had to tweak the tileset asset I found online so it would fit my map. This taught me how to use online tilesets and customize them for use. 
 </li>
 
 <li><strong>Prototype Assets:</strong>
 <ul>
 <li>Phaser first game: <a href="http://phaser.io/examples/v3/category/games/firstgameo">source code</a></li>
-<li>Background: <a href="https://opengameart.org/content/backgrounds-for-2d-platformers">concept art</a></li>
+<li>Background: <a href="https://opengameart.org/content/sci-fi-background">concept art</a></li>
 <li>Sprite: <a href="https://kenney.nl/assets/toon-characters-1">character art</a></li>
 <li>Vials: <a href="https://opengameart.org/content/potion-bottles-2">items art</a></li>
+<li>Tileset: <a href="https://kenney.nl/assets/platformer-pack-industrial">map tiles</a></li>
+<li>Audio: <a href="https://opengameart.org/content/cyberpunk-moonlight-sonata">music</a></li>
 </ul>
 </li>
 
 <li><strong>Prototype Closest Other Game:</strong>
-Phaser first game
+My first game - <a href="https://kelly-fernandez.github.io/cs325-game-prototypes/Fernandez_D1/">Chemistry Collection</a></li>
+    Added world levels, music, new art, updated bomb physics, restart button, text of game rules, new collision physics, new vial physics
 </li>
 
 <li><strong>High Concept:</strong>
@@ -60,7 +63,7 @@ The game uses direct arrow key inputs to move the character. The bombs move in a
 </li>
 
 <li><strong>Prototype Goal:</strong>
-I wanted to learn how phaser works and how to code for it. I also wanted to learn how to create my own spritesheets to create characters.
+I wanted to use what I previously have learned so far to see how well I could iterate on my first game which was pretty rough.
 </li>
 
 <li><strong>Player Experience Goals:</strong>
@@ -68,7 +71,7 @@ I want the player to have fun while they avoid bombs and collect vials and try t
 </li>
 
 <li><strong>Gameplay:</strong>
-The player starts on the ground of the level and can move up, down, right, left using arrow keys. The player can use the platform to climb onto higher platforms where vials are worth more. Once every vial of any one kind is collected, a new batch of vials is released along with a new bomb. Each vial is worth varying amount of points. Green on the ground row is worth 1, blue on the middle row is worth 3, and red on the upper row is worth 5 points. I wanted to add a leaderboard but I think that is best left for when I have more experience with phaser.    
+The player starts on the ground of the level and can move up, down, right, left using arrow keys. The player can use the platform to climb onto higher platforms where vials are worth more. Once every vial of any one kind is collected, a new batch of vials is released along with a new bomb with velocity based on which vial row was collected. Each vial is worth varying amount of points. Green on the ground row is worth 1, blue on the middle row is worth 3, and red on the upper row is worth 5 points.
 </li>
 
 <li><strong>Strategies:</strong>
