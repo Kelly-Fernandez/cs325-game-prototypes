@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Chemistry Collection!</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Chemistry Collection!</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+The Chemist has to collect his vials while new bombs are added after vial rows are collected. Each vial collected gives you different scores - green: 1, blue: 3, red: 5. 
+</li>
+
+<li><strong>Technical Merit:</strong>
+New bombs are added after each row completion. Each vial is worth different scores. Added custom sprite, vials, platforms, background.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+I learned how to implement available code and analyzed in order to create my own game. I have no prior experience with javascript or phaser so I took this time to learn the mechanics. The hardest part was creating my own spritesheet to make my own character.    
+</li>
+
+<li><strong>Prototype Assets:</strong>
+<ul>
+<li>Phaser first game: <a href="http://phaser.io/examples/v3/category/games/firstgameo">source code</a></li>
+<li>Background: <a href="https://opengameart.org/content/backgrounds-for-2d-platformers">concept art</a></li>
+<li>Sprite: <a href="https://kenney.nl/assets/toon-characters-1">character art</a></li>
+<li>Vials: <a href="https://opengameart.org/content/potion-bottles-2">items art</a></li>
+</ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+Phaser first game
+</li>
+
+<li><strong>High Concept:</strong>
+Help the chemist collect his vials while avoiding bombs!
+</li>
+
+<li><strong>Theme:</strong>
+Chemist Theme
+</li>
+
+<li><strong>Mandated Variety:</strong>
+The game uses direct arrow key inputs to move the character. The bombs move in a deterministic pattern as they bounce of platforms and the boundry. This game is in the style of 2d platform collector.
+</li>
+
+<li><strong>Prototype Goal:</strong>
+I wanted to learn how phaser works and how to code for it. I also wanted to learn how to create my own spritesheets to create characters.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+I want the player to have fun while they avoid bombs and collect vials and try to get a high score.
+</li>
+
+<li><strong>Gameplay:</strong>
+The player starts on the ground of the level and can move up, down, right, left using arrow keys. The player can use the platform to climb onto higher platforms where vials are worth more. Once every vial of any one kind is collected, a new batch of vials is released along with a new bomb. Each vial is worth varying amount of points. Green on the ground row is worth 1, blue on the middle row is worth 3, and red on the upper row is worth 5 points. I wanted to add a leaderboard but I think that is best left for when I have more experience with phaser.    
+</li>
+
+<li><strong>Strategies:</strong>
+The player will decide which rows they wanna clear first for optimum scores to bombs ratios. The player will also have to get used to the movements of the bombs to avoid them.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+Set with an industrial background the chemist hero must collect his precious vials while evil corporate bombs with the aim of storm-troopers try to get him. How far will he get on his quest to collect all of his vials?
+Will the bombs ever develop better AI than cyberpunk 2077?
+</li>
+
+<li><strong>Target Audience:</strong>
+My audience is 2d platform enthusiasts who grew up playing these types of games and for lovers of chemistry and haters of corporate oppression.
+</li>
+
+<li><strong>Play Time:</strong>
+Depending on the players skill they can last anywhere from 10 seconds to 1+ minutes
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
