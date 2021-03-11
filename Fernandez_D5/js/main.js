@@ -43,7 +43,7 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('sky', 'assets/scifi_bg.png');
+    this.load.image('sky', 'assets/mic.jpg');
     this.load.image('button','assets/button.jpg');
 }
 
