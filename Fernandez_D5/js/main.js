@@ -137,7 +137,7 @@ function onEvent ()
 function update ()
 {   
     if(gameOver == true) {
-        scoreText = this.add.text(330, 475, 'FINAL Score: 0', { fontSize: '32px', fill: '#FFFFFF' })
+        scoreText = this.add.text(330, 475, 'FINAL Score: ' + score, { fontSize: '32px', fill: '#FFFFFF' })
     }
 }
 
