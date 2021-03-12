@@ -66,7 +66,7 @@ function create ()
     // 30 in seconds
     this.initialTime = 30;
 
-    timer = this.add.text(32, 32, 'Countdown: ' + formatTime(this.initialTime));
+    timer = this.add.text(360, 200, 'Time: ' + formatTime(this.initialTime), {fontSize: '32px'});
 
     // Each 1000 ms call onEvent
     timedEvent = this.time.addEvent({ delay: 1000, callback: onEvent, callbackScope: this, loop: true });
@@ -130,14 +130,14 @@ function formatTime(seconds){
 function onEvent ()
 {
     this.initialTime -= 1; // One second
-    timer.setText('Countdown: ' + formatTime(this.initialTime));
+    timer.setText('Time: ' + formatTime(this.initialTime));
 }   
 
 
 function update ()
 {   
     if(gameOver == true) {
-        scoreText = this.add.text(330, 475, 'FINAL Score: ' + score, { fontSize: '32px', fill: '#FFFFFF' })
+        scoreText = this.add.text(330, 150, 'FINAL Score: ' + score, { fontSize: '32px', fill: '#FFFFFF' })
     }
 }
 
