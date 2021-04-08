@@ -56,12 +56,11 @@ function preload ()
 
 function create ()
 {
-    //  A simple background for our game
     if(questnum == 0) {
         this.add.image(506, 285, 'intro');
 
-        this.clickButton1 = this.add.text(450, 300, 'START', { font: "48px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(425, 300, 'START', { font: "48px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
@@ -69,18 +68,18 @@ function create ()
     else if(questnum == 1) {
         this.add.image(506, 285, 'ques1');
 
-        this.clickButton1 = this.add.text(200, 400, 'GERMANY', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(175, 400, 'GERMANY', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton2 = this.add.text(475, 400, 'RUSSIA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton2 = this.add.text(450, 400, 'RUSSIA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
-        this.clickButton3 = this.add.text(750, 400, 'ITALY', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton3 = this.add.text(725, 400, 'ITALY', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
@@ -88,180 +87,180 @@ function create ()
     else if(questnum == 2) {
         this.add.image(506, 285, 'ques2');
 
-        this.clickButton1 = this.add.text(200, 400, 'MEXICO', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(175, 400, 'MEXICO', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton2 = this.add.text(475, 400, 'FRANCE', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton2 = this.add.text(450, 400, 'FRANCE', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton3 = this.add.text(750, 400, 'ITALY', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton3 = this.add.text(725, 400, 'ITALY', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
     }
     else if(questnum == 3) {
         this.add.image(506, 285, 'ques3');
-        this.clickButton1 = this.add.text(200, 400, 'CHILE', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(175, 400, 'CHILE', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton2 = this.add.text(475, 400, 'URUGUAY', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton2 = this.add.text(425, 400, 'URUGUAY', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
-        this.clickButton3 = this.add.text(750, 400, 'PERU', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton3 = this.add.text(725, 400, 'PERU', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
     }
     else if(questnum == 4) {
         this.add.image(506, 285, 'ques4');
-        this.clickButton1 = this.add.text(200, 400, 'THAILAND', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(175, 400, 'THAILAND', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
-        this.clickButton2 = this.add.text(475, 400, 'MALAYSIA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton2 = this.add.text(450, 400, 'MALAYSIA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton3 = this.add.text(750, 400, 'INDONESIA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton3 = this.add.text(725, 400, 'INDONESIA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
     }
     else if(questnum == 5) {
         this.add.image(506, 285, 'ques5');
-        this.clickButton1 = this.add.text(200, 400, 'IRELAND', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(175, 400, 'IRELAND', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton2 = this.add.text(475, 400, 'GREECE', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton2 = this.add.text(450, 400, 'GREECE', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
-        this.clickButton3 = this.add.text(750, 400, 'PORTUGAL', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton3 = this.add.text(725, 400, 'PORTUGAL', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
     }
     else if(questnum == 6) {
         this.add.image(506, 285, 'ques6');
-        this.clickButton1 = this.add.text(200, 400, 'JAMAICA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(175, 400, 'JAMAICA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton2 = this.add.text(475, 400, 'EGYPT', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton2 = this.add.text(450, 400, 'EGYPT', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton3 = this.add.text(750, 400, 'GHANA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton3 = this.add.text(725, 400, 'GHANA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
     }
     else if(questnum == 7) {
         this.add.image(506, 285, 'ques7');
-        this.clickButton1 = this.add.text(200, 400, 'DENMARK', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(175, 400, 'DENMARK', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
-        this.clickButton2 = this.add.text(475, 400, 'NORWAY', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton2 = this.add.text(450, 400, 'NORWAY', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton3 = this.add.text(750, 400, 'FINLAND', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton3 = this.add.text(725, 400, 'FINLAND', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
     }
     else if(questnum == 8) {
         this.add.image(506, 285, 'ques8');
-        this.clickButton1 = this.add.text(200, 400, 'PANAMA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(175, 400, 'PANAMA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
-        this.clickButton2 = this.add.text(475, 400, 'PARAGUAY', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton2 = this.add.text(425, 400, 'PARAGUAY', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton3 = this.add.text(750, 400, 'PERU', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton3 = this.add.text(725, 400, 'PERU', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
     }
     else if(questnum == 9) {
         this.add.image(506, 285, 'ques9');
-        this.clickButton1 = this.add.text(200, 400, 'MALI', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(175, 400, 'MALI', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton2 = this.add.text(475, 400, 'SOUTH AFRICA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton2 = this.add.text(410, 400, 'SOUTH AFRICA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
-        this.clickButton3 = this.add.text(750, 400, 'NIGERIA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton3 = this.add.text(725, 400, 'NIGERIA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
     }
     else if(questnum == 10) {
         this.add.image(506, 285, 'ques10');
-        this.clickButton1 = this.add.text(200, 400, 'SLOVENIA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(175, 400, 'SLOVENIA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
-        this.clickButton2 = this.add.text(475, 400, 'CROATIA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton2 = this.add.text(450, 400, 'CROATIA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton3 = this.add.text(750, 400, 'SLOVAKIA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton3 = this.add.text(725, 400, 'SLOVAKIA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
     }
     else if(questnum == 11) {
         this.add.image(506, 285, 'ques11');
-        this.clickButton1 = this.add.text(200, 400, 'MACEDONIA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton1 = this.add.text(175, 400, 'MACEDONIA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton2 = this.add.text(475, 400, 'MALTA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton2 = this.add.text(450, 400, 'MALTA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerW();
         });
-        this.clickButton3 = this.add.text(750, 400, 'ANDORRA', { font: "30px Droid Sans", fill: '#FFF' })
-        .setInteractive()
+        this.clickButton3 = this.add.text(725, 400, 'ANDORRA', { font: "30px Droid Sans", fill: '#FFF' })
+        .setInteractive({useHandCursor: true})
         .on('pointerup', () => {
             answerC();
         });
