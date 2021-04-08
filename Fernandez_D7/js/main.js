@@ -275,21 +275,28 @@ function create ()
 } 
 
 function answerC() {
-    questnum++;
-    correct = true;
+    if(gameOver ==false) 
+    {
+        questnum++;
+        correct = true;
+    }   
 }
 function answerW() {
-    lives--;
-    livesText.setText("Lives: " + lives);
-    if(lives == 0) {
-        gameOver = true;
+    if(gameOver == false)
+    {
+        lives--;
+        livesText.setText("Lives: " + lives);
+        if(lives == 0) {
+            gameOver = true;
+        }
     }
 }
 
 function update ()
 {   
     if(gameOver == true) {
-        this.add.text(10, 300, 'GAME OVER Press SPACE to restart', { font: "64px Droid Sans", fill: '#FFF' })
+        this.add.text(150, 300, 'GAME OVER: NO MORE LIVES', { font: "50px Droid Sans", fill: '#FFF' })
+        this.add.text(270, 360, 'Press SPACE to restart', { font: "50px Droid Sans", fill: '#FFF' })
     }
     if (correct == true) {
         this.scene.restart();
