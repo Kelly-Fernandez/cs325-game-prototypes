@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Type Race!</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Type Race</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+A typing game where you race against the clock to get to the finish line before time is up.
+</li>
+
+<li><strong>Technical Merit:</strong>
+My game uses a timer to add a challenge for how much time the player has to finish the race. I use a console prompt to have the player type in words. I added the car in as a sprite so it moves everytimem the player types a word correctly. The car accelerates as you get to the end. I added music and a reset key to make the game more appealing.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+The hardest part about this game was figuring out how to get user input. Also how to use a key press to get the console prompt. I learned how to assign functions to key presses.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
+<ul>
+<li>Background image: <a href="https://www.pinterest.com/pin/438678819945672312/">source</a></li>
+<li>Car image: <a href="https://opengameart.org/content/2d-car-sprite-10">source</a></li>
+<li>Music: <a href="https://opengameart.org/content/outro-party-music">source</a></li>
+<li>Timer Code: <a href="https://phaser.discourse.group/t/countdown-timer/2471/3">source</a></li>
+</ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+    <ul>
+        <li>TypeRacer: <a href="https://play.typeracer.com/">source</a></li>
+    </ul>
+</li>
+
+<li><strong>High Concept:</strong>
+Finish the race before time is up by typing words fast!
+</li>
+
+<li><strong>Theme:</strong>
+State which of the Storymatic themes you used.
+</li>
+
+<li><strong>Mandated Variety:</strong>
+Direct keyboard inputs, deterministic, competitor, racing game.
+</li>
+
+<li><strong>Prototype Goal:</strong>
+I wanted to make a typing game since I really enjoy playing those to better my typing skills and speed.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+I want players to have fun testing their typing skills.
+</li>
+
+<li><strong>Gameplay:</strong>
+The player must press the enter key to bring up the console prompt. The player must then type the word they are told to. If they type it in wrong then nothing happens. If they type it in correctly then the car moves closer to the finish line. The win if they reach the finish line before time is up. They lose if the time is over before they can finish.
+</li>
+
+<li><strong>Strategies:</strong>
+The player will have to type fast in order to finish the race in time. The words don't change so they can learn what words are going to be presented and learn how to type those quickly.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+The player must help the car finish the race by typing words quickly.
+</li>
+
+<li><strong>Target Audience:</strong>
+People who enjoy testing their typing skills.
+</li>
+
+<li><strong>Play Time:</strong>
+0 - 20 seconds.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
