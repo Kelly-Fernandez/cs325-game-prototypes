@@ -52,11 +52,17 @@ function preload ()
     this.load.image('ques10', 'assets/q10.jpg');
     this.load.image('ques11', 'assets/q11.jpg');
     this.load.image('finale', 'assets/q12.jpg');
+    this.load.audio('bgm', 'assets/music.wav');
 }
 
 function create ()
 {
+
     if(questnum == 0) {
+        //play bgm
+        this.music = this.sound.add('bgm', {volume: 0.04}); 
+        this.music.play();
+        
         this.add.image(506, 285, 'intro');
 
         this.clickButton1 = this.add.text(425, 300, 'START', { font: "48px Droid Sans", fill: '#FFF' })
@@ -279,6 +285,7 @@ function answerC() {
     {
         questnum++;
         correct = true;
+
     }   
 }
 function answerW() {
@@ -306,6 +313,7 @@ function update ()
         gameOver = false;
         questnum = 0;
         lives = 5;
+        this.music.stop();
         this.scene.restart();
     }
 }
